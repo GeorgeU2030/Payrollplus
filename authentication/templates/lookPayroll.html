@@ -1,0 +1,164 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ver Nomina</title>
+    <link rel="icon" type="image/x-icon" href="../../../../../media/images/salaryicon.png">
+    <link href="{% static 'menu.css' %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://fonts.cdnfonts.com/css/segoe-ui-4" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg ">
+        <div class="container-fluid">
+          <a class="navbar-brand " ><img src="{% static '../media/images/salaryicon128.png' %}" alt="No Encontrada" width="50" height="50" id="icon" style="margin-left: 1rem;"/></a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link " aria-current="page" id="firstitem">PayRoll +</a>
+              </li> 
+              </ul>
+              <ul class="navbar-nav ms-auto mb-2 mb-lg-0" >
+              <li class="nav-item" id="nav-item">
+                <a class="nav-link active" aria-current="page" href="{% url 'authentication:menu' %}" id="trading">Menu</a>
+              </li>
+            </ul>
+            <button class="btn btn-outline-success mx-3" type="submit" style="background-color: white;" id="btnsearch"><a href="{% url 'authentication:orderpayroll' %}" style="text-decoration: none; font-weight: 600; color: #0b38a0;">Ordenar</a></button>
+            <form class="d-flex" action="{% url 'authentication:searchemployee2' %}" method="post">
+              {% csrf_token %}
+    
+              <input class="form-control me-2 text-end" type="search" placeholder="Buscar Empleado" aria-label="Search" name="searchem">
+                <button class="btn btn-outline-success" type="submit" style="background-color: white; color: #0b38a0;" id="btnsearch">Buscar</button>
+            </form>
+        </div>
+    </div>
+  </nav>
+
+
+  <style>
+    button[id="btnsearch"]:hover{
+        color: #026c93;
+    }
+</style>
+  {% if employees %}
+
+  <div class="container">
+    <div class="text-center my-3">
+      <p style="font-size:3rem; font-weight: 500;">Nomina</p>
+    </div>
+    <div class="table-responsive">
+    <table border="1" class="table table-hover text-center">
+      <thead>
+        <tr>
+          <th></th>  
+          <th></th> 
+          <th></th> 
+          <th></th> 
+          <th></th> 
+          <th></th>
+          <th colspan="3" style="border:3px solid #0b38a0; color: #0b38a0;">Devengados</th>
+          <th></th>
+          <th></th>
+          <th colspan="5" style="border:3px solid #0b38a0; color: #0b38a0;">Prestaciones Sociales</th>
+          <th colspan="4" style="border:3px solid #0b38a0; color: #0b38a0;">Seguridad Social</th>
+          <th colspan="4" style="border:3px solid #0b38a0; color: #0b38a0;">Parafiscales</th>
+        </tr>
+        <tr>
+          <th style="background-color: #0b38a0; color: white; font-weight: 500;">Apellido</th>
+          <th style="background-color: #0b38a0; color: white; font-weight: 500;">Nombre</th>
+          <th style="background-color: #0b38a0; color: white; font-weight: 500;">Cargo</th>
+          <th style="background-color: #0b38a0; color: white; font-weight: 500;">Clasificacion</th>
+          <th style="background-color: #0b38a0; color: white; font-weight: 500;">Salario</th>
+          <th style="background-color: #0b38a0; color: white; font-weight: 500;">Dias Trabajados</th>
+          <th style="background-color: #026c93; color: white; font-weight: 500;">Sueldo</th>
+          <th style="background-color: #026c93; color: white; font-weight: 500;">Auxilio de Transporte</th>
+          <th style="background-color: #026c93; color: white; font-weight: 500;">Total</th>
+          <th style="background-color: #0b38a0; color: white; font-weight: 500;">Total Deducciones</th>
+          <th style="background-color: #0b38a0; color: white; font-weight: 500;">Neto a Pagar</th>
+          <th style="background-color: #3081c5; color: white; font-weight: 500;">Cesantías</th>
+          <th style="background-color: #3081c5; color: white; font-weight: 500;">Prima</th>
+          <th style="background-color: #3081c5; color: white; font-weight: 500;">Vacaciones</th>
+          <th style="background-color: #3081c5; color: white; font-weight: 500;">Intereses</th>
+          <th style="background-color: #3081c5; color: white; font-weight: 500;">Total</th>
+          <th style="background-color: #026c93; color: white; font-weight: 500;">Salud</th>
+          <th style="background-color: #026c93; color: white; font-weight: 500;">Pension</th>
+          <th style="background-color: #026c93; color: white; font-weight: 500;">ATEP</th>
+          <th style="background-color: #026c93; color: white; font-weight: 500;">Total</th>
+          <th style="background-color: #3081c5; color: white; font-weight: 500;">Caja de Compensacion</th>
+          <th style="background-color: #3081c5; color: white; font-weight: 500;">ICBF</th>
+          <th style="background-color: #3081c5; color: white; font-weight: 500;">SENA</th>
+          <th style="background-color: #3081c5; color: white; font-weight: 500;">Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for x in employees %}    
+            <tr class="align-middle">
+                <td>{{ x.last_name }}</td>
+                <td>{{ x.name }}</td>
+                <td >
+                {{ x.position }}
+                </td>
+                <td>{{ x.clasification }}</td>
+                <td>{{ x.salary }}</td>
+                <td>{{ x.work_days }}</td>
+                <td>{{ x.salarydev }}</td>
+                <td>{{ x.transport_aux }}</td>
+                <td>{{ x.totalsalary }}</td>
+                <td>{{ x.deduction }}</td>
+                <td>{{ x.totalpaysalary }}</td>
+                <td>{{ x.severance }}</td>
+                <td>{{ x.bonus }}</td>
+                <td>{{ x.vacations }}</td>
+                <td>{{ x.severance_pay }}</td>
+                <td>{{ x.totalbenefits }}</td>
+                <td>{{ x.health }}</td>
+                <td>{{ x.pension }}</td>
+                <td>{{ x.ateb }}</td>
+                <td>{{ x.totalsecurity }}</td>
+                <td>{{ x.box }}</td>
+                <td>{{ x.sena }}</td>
+                <td>{{ x.icbf }}</td>
+                <td>{{ x.totalparafiscal }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+          <td colspan="6" class="align-middle" style="font-weight: 600;">Totales</td>
+          <td class="align-middle" style="font-weight: 600;">Salarios</td>
+          <td colspan="2" class="align-middle" style="font-weight: 600;">$ {{ payroll.totalsalary }}</td>
+          <td></td>
+          <td></td>
+          <td colspan="3" class="align-middle" style="font-weight: 600;">Prestaciones Sociales</td>
+          <td colspan="2" class="align-middle" style="font-weight: 600;">$ {{ payroll.totalbenefits }}</td>
+          <td colspan="2" class="align-middle" style="font-weight: 600;"> Seguridad Social</td>
+          <td colspan="2" class="align-middle" style="font-weight: 600;">$ {{ payroll.totalsecurity }}</td>
+          <td colspan="2" class="align-middle" style="font-weight: 600;">Parafiscales</td>
+          <td colspan="2" class="align-middle" style="font-weight: 600;">$ {{ payroll.totalparafiscal }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  </div>
+
+  
+  {% else %}
+  <div class="container-fluid">
+    <div class="row justify-content-center" style="min-height: 85vh;">
+      <div class="col-lg-4 text-center align-self-center">
+        {% if info %}
+                <p style="font-weight: 600; font-size: 24px;">{{ info }}</p>
+        {% else %}
+        <p style="font-weight: 600;">No tienes Empleados Agregados a la Nomina</p>
+        <a class="btn" id="createpayroll" href="{% url 'authentication:createpayroll' %}">Crear Nomina</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</body>
+</html>

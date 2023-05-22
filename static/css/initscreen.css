@@ -1,0 +1,44 @@
+
+@import url('https://fonts.cdnfonts.com/css/segoe-ui-4');
+
+:root{
+    --bs-body-font-family:'Segoe UI', sans-serif;
+}
+
+#trading{
+    font-weight: 600;
+    color: white;
+}
+#companies{
+    font-weight: 600;
+    color: white;
+}
+#signup{
+    font-weight: 600;
+    color: white;
+}
+#login{
+    font-weight: 600;
+    color: white;
+}
+.nav-item{
+    margin-left: 1.5rem;
+    margin-right: 1rem;
+}
+
+#firstitem{
+    color: white;
+    font-weight: 600;
+}
+.navbar{
+    background-color: #0b38a0;
+}
+
+#nav-item:hover{
+    background-color: #4b72cb;
+    border-radius: 1rem;
+}
+#nav-item{
+    padding: 0.3rem 0.5rem;
+}
+

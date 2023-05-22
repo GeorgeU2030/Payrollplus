@@ -1,0 +1,110 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Empleado</title>
+    <link rel="icon" type="image/x-icon" href="../../../../media/images/salaryicon.png">
+    <link href="{% static 'addemployee.css' %}" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link href="https://fonts.cdnfonts.com/css/segoe-ui-4" rel="stylesheet">
+</head>
+<body>
+    <div class="container-fluid" style="background-color: #1E50D9;" >
+        <form method="post"  enctype=multipart/form-data class="text-center" action="{% url 'authentication:updateemployee' id=e.id %}" >
+            <div class="row" style="min-height: 90vh;" >
+            {% csrf_token %}
+            <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center" style="background-color: #6283DF;" >
+                <div class="col-lg-6 my-3" >
+                    <label class="control">Nombres</label>
+                    <input class="form-control" name="namein" value="{{ e.name }}">
+                </div>
+                <div class="col-lg-6 my-3 " >
+                    <label class="control">Apellidos</label>
+                    <input class="form-control" name="lastnamein" value="{{ e.last_name }}">
+                </div>
+                <div class="col-lg-6 my-3 " >
+                    <label class="control">Email</label>
+                    <input class="form-control" type="email" name="emailin" value="{{ e.email }}">
+                </div>
+                <div class="col-lg-6 my-3 " >
+                    <label class="control">Telefono</label>
+                    <input class="form-control" name="phonein" value="{{ e.phone }}">
+                </div>
+                <div class="col-lg-6 my-3 " >
+                    <label class="control">Fecha de Nacimiento</label>
+                    <input class="form-control" type="date" name="datein" value="{{ e.date_birth|date:'Y-m-d' }}">
+                </div>
+                <div class="col-lg-6 my-3 " >
+                    <label class="control">Direccion</label>
+                    <input class="form-control" name="addressin" value="{{ e.address }}">
+                </div>
+            </div>
+            <div class="col-lg-6 d-flex flex-column justify-content-center align-items-center" style="background-color: #20305C;">
+                <div class="col-lg-6 justify-content-between " style="border: 1px solid white;">
+                    <a class="align-self-center btn my-4" style="background-color: white; font-weight: 600; color: #20305C; border-radius:1rem" href="{% url 'authentication:menu' %}"> Menu</a>             
+                </div>
+                <div class="col-lg-6 my-3 " >
+                    <label class="control">Cargo</label>
+                    <input class="form-control" name="positionin" value="{{ e.position }}">
+                </div>
+                <div class="col-lg-6 my-3 " >
+                    <label class="control">Salario</label>
+                    <input class="form-control" type="number" name="salaryin" value="{{ e.salary }}">
+                </div>
+                <div class="col-lg-6 my-3" >
+                    <label class="control">Dias Trabajados</label>
+                    <input class="form-control" type="number" name="workdaysin" value="{{ e.work_days}}">
+                </div>
+                <div class="col-lg-6 my-3">
+                <label class="control">Clasificacion</label>
+                <select class="form-control" required name="clasificationin">
+                    <option disabled>Seleccione una opción</option>
+                    <option value="MOD" {% if e.clasification == 'MOD' %}selected{% endif %}>Mano de Obra Directa</option>
+                    <option value="MOI" {% if e.clasification == 'MOI' %}selected{% endif %}>Mano de Obra Indirecta</option>
+                </select>
+                </div>           
+            </div>
+            </div>
+            {% if response %}
+            <div class="mt-2">
+                <h6 style="color: white;">{{response}}</h6>
+            </div>
+            {% endif %}
+            <button class="btn" type="submit" id="registersingup"><a id="newbtn" style="text-decoration:none;">Actualizar Empleado</a></button>
+        </form> 
+        <div class="row justify-content-center">
+        <div class="col-lg-3 text-center">
+        <button class="btn" type="submit" id="btnfiredup"><a style="text-decoration:none; font-weight: 600;" id="b" href="{% url 'authentication:firedemployee' id=e.id %}">DESPEDIR</a></button>
+        </div>
+    </div>
+    </div>
+   <style>
+    button[id='btnfiredup']{
+    background-color:red;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    font-weight: 600;
+}
+    button[id='btnfiredup']:hover{
+    margin-bottom: 1rem;
+    background-color:white;
+    border-radius: 1rem;
+    font-weight: 600;
+}
+
+a[id='b']{
+    color: white;
+}
+
+a[id='b']:hover{
+    color: red;
+}
+
+
+
+   </style>
+</body>
+</html>

@@ -1,0 +1,37 @@
+
+
+@import url('https://fonts.cdnfonts.com/css/segoe-ui-4');
+
+:root{
+    --bs-body-font-family:'Segoe UI', sans-serif;
+}
+
+*{
+    color: white;
+}
+
+.form-control{
+    text-align: end;
+}
+
+label{
+    font-weight: 600;
+}
+
+button[id='registersingup']{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    background-color:#1F4178;
+    border-radius: 1rem;
+    color: white;
+    font-weight: 600;
+}
+button[id='registersingup']:hover{
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    background-color:white;
+    border-radius: 1rem;
+    color: #1F4178;
+    font-weight: 600;
+}
+
